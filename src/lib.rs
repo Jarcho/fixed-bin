@@ -306,7 +306,7 @@ macro_rules! serializable {
             $($(#[$fattr])* $fv $fname: <$fty as $crate::Serialized>::Deserialized),*
         }
 
-        impl Serialize<$se_name> for $de_name {
+        impl $crate::Serialize<$se_name> for $de_name {
             fn serialize(&self) -> $se_name {
                 $se_name {
                     $($fname: <<$fty as $crate::Serialized>::Deserialized as $crate::Serialize<$fty>>::serialize(&self.$fname)),*
